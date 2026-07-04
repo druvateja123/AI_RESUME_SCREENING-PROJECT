@@ -49,9 +49,7 @@ AI-Resume-Screening/
 
 # 1. Clone the repository
 bash
-git clone <repository-url>
-
-or download the project ZIP.
+git clone <my_repository-url>
 
 ---
 # 2. Navigate to the project folder
@@ -103,8 +101,6 @@ prompts/resume_prompt.txt
 
 ---
 # Database Schema
-No database is used in this project.
-The application directly reads PDF files, processes them in memory, and sends the extracted text to the Gemini AI model for analysis.
 ---
 # Sample Test Data
 
