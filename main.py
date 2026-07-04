@@ -120,13 +120,37 @@ for file in resume_files:
         resume=resume_text
     )
 
-    try:
-        response = model.generate_content(prompt)
-        print(response.text)
+try:
+    response = model.generate_content(prompt)
+    print(response.text)
 
-    except Exception as e:
-        print("\nGemini API Error")
-        print(e)
+    import re
+
+    match = re.search(r"match score[:\s]*(\d+)", response.text.lower())
+
+    if match:
+        score = int(match.group(1))
+
+        if score >= 80:
+            print("\n========== INTERVIEW SCHEDULE ==========")
+            print("Status          : Shortlisted")
+            print("Interview Date  : Tomorrow")
+            print("Interview Time  : 10:00 AM")
+            print("Interview Mode  : Google Meet")
+            print("========================================")
+
+        elif score >= 60:
+            print("\nStatus : Manual Review")
+
+        else:
+            print("\nStatus : Rejected")
+
+    else:
+        print("\nMatch Score not found.")
+
+except Exception as e:
+    print("\nGemini API Error")
+    print(e)
 
 
 print("\n" + "=" * 80)
